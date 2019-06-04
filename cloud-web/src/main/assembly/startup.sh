@@ -14,7 +14,7 @@ printf "PATH:$CODE_HOME \n"
 export CLASSPATH="$CODE_HOME/classes:./lib/*"
 
 # 启动类
-export MAIN_CLASS=com.dm.provider.DmUserProviderApplication
+export MAIN_CLASS=com.cloud.provider.CloudWebApplication
 
 java $JAVA_OPTS -classpath $CLASSPATH $MAIN_CLASS > ./console.log 2>&1 & 
 
