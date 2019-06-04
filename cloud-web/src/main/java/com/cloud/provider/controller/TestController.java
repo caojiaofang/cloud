@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cloud.db.dao.PropertiesDao;
 import com.cloud.db.pojo.PropertiesPOJO;
+import com.cloud.provider.handler.TestHandler;
 
 /**
  * @Title:  TestController.java
@@ -33,12 +34,16 @@ import com.cloud.db.pojo.PropertiesPOJO;
 public class TestController {
 
 	@Resource
-	private PropertiesDao propertiesDao;
+	private TestHandler testHandler;
 	
 	@RequestMapping("/get")
 	@ResponseBody
 	public String getString() {
-		PropertiesPOJO propertiesPOJO = propertiesDao.selectById(1l);
-		return propertiesPOJO.toString();
+		return testHandler.getString();
+	}
+	
+	@RequestMapping("/test")
+	public String test() {
+		return "测试";
 	}
 }
