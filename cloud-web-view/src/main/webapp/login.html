@@ -1,0 +1,164 @@
+<!DOCTYPE html><html>
+<head>
+<title>统一支付系统登录</title>
+
+<!-- 页面基本设置禁止随意更改 -->
+<meta charset="utf-8">
+<meta name="author" content="forework">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="msapplication-tap-highlight" content="no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+<!-- 禁止页面缓存begin -->
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<meta HTTP-EQUIV="expires" CONTENT="Mon, 23 Jan 1978 20:52:30 GMT"> 
+<!-- 禁止页面缓存end -->
+
+<link rel="stylesheet" href="base/css/lib/toastr/toastr.min.css" />
+<link rel="stylesheet" type="text/css" href="base/css/login/less.css">
+<link rel="stylesheet" type="text/css" href="base/css/login/basic.css">
+<!--[if IE 8] -->
+<link rel="stylesheet" type="text/css" href="base/css/login/ie8.css">
+<!--[if gte IE 9] --> 
+<link rel="stylesheet" type="text/css" href="base/css/login/ie.css"> 
+</head>
+<body onkeydown="handleEnter(event)">
+<div class="wrapper" style="background-color: white;">
+  <div class="login-top">
+  <div style="height: 60px;background-color: white;">
+	<div style=";margin-left: 140px;">
+		<img src="base/images/login/log_1.jpg" />	
+	</div>	
+  </div>
+    <div class="login-topBg">
+      <div class="login-topBg1">
+        
+        <div class="login-topStyle" >
+          
+          <!--在点击注册时出现样式login-topStyle3登录框，而login-topStyle2则消失-->
+          <div class="login-topStyle3" id="loginStyle" style="margin-top: 75px;">
+            <h3>用户登录</h3>
+            <!--输入错误提示信息，默认是隐藏的，把display:none，变成block可看到-->
+            <div class="ui-form-item loginUsername">
+              <input type="username" id="userAcct" placeholder="用户账号" required="required">
+            </div>
+            <div class="error-information" id="nameInfo" style="display:none;">您输入的账号不正确，请重新输入</div>
+            <div class="ui-form-item loginPassword">
+              <input type="password" id="userPwd" placeholder="密码" required="required">
+            </div>
+            <span class="error-information" id="pwdInfo" style="display:none;">您输入的密码不正确，请重新输入！错误5次将冻结账号</span>
+             <a class="btnStyle btn-register" onclick="login()">立即登录</a>
+             </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="loginCen" style="margin-top: 55px;">
+    <div class="login-center">
+      <div class="loginCenter-moudle">
+        <div class="loginCenter-moudleLeft" style="margin-right: 60px;"> &nbsp;</div>
+        <div class="loginCenter-moudleRight" style="  width: 1067px;"> 
+          <!--第一个--> 
+          <a class="loginCenter-mStyle loginCenter-moudle1" id="moudleRemove" style=" display:block;width: 340px;">
+           <span class="moudle-img"><img src="base/images/login/login_bg_01.png"></span>
+            <span class="moudle-text"> 
+            <span class="moudle-text1" style="font-family:'微软雅黑';width: 200px;" >分布式架构
+			</span> 
+            <span class="moudle-text2" style="font-family:'微软雅黑'">Distributed architecture</span> 
+            </span>
+             </a> 
+           <!--第二个--> 
+          <a class="loginCenter-mStyle loginCenter-moudle2" style=" display:block; width: 357px;" id="moudleRemove2" > 
+          <span class="moudle-img"><img src="base/images/login/login_bg_02.png"></span> 
+           <span class="moudle-text">
+            <span class="moudle-text1" style="font-family:'微软雅黑';width: 200px;">智慧路由 
+			</span>
+            <span class="moudle-text2" style="font-family:'微软雅黑'">Smart routing</span> 
+           </span>
+             </a> 
+            <!--第三个--> 
+                 <a class="loginCenter-mStyle loginCenter-moudle3" style=" display:block;" id="moudleRemove3" > 
+                 <span class="moudle-img"><img src="base/images/login/login_bg_03.png"></span> 
+                   <span class="moudle-text"> 
+                 <span class="moudle-text"> <span class="moudle-text1" style="font-family:'微软雅黑';width: 200px;">轻量化运维
+			</span>
+                  <span class="moudle-text2" style="font-family:'微软雅黑'">Lightweight operation</span>
+            </span>
+            </span>
+                </a> 
+             </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"> <span class="footerText">深圳雁联计算支付部 粤ICP备10202021 Copyright 2010 ALL RIGHT RESERUED</span> </div>
+</div>
+<script src="base/js/lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="base/js/md5.js"></script>
+<script src="base/js/lib/toastr/toastr.min.js"></script>
+
+<script>
+function login(){	
+	
+	var userAcct = $("#userAcct").val();
+	var userPwd = $("#userPwd").val();
+	if(userAcct == "" || userAcct == null){
+		toastr.warning("用户账号不能为空!");
+	}else if(userPwd == "" || userPwd == null){
+		toastr.warning("用户密码不能为空!");
+	}else{
+		$.post("/login/doLogin", {
+			account: userAcct,
+			password: md5(userPwd),
+		}, function(data) {
+			document.getElementById("nameInfo").style.display = "none";
+			document.getElementById("pwdInfo").style.display = "none";
+			if("success"==data){
+				window.location.href="/index.html";
+			}else if("userAcctError"==data){
+				//toastr.warning("用户账号错误!");
+				$("#nameInfo").text("");
+				$("#nameInfo").text("您输入的账号不正确，请重新输入");
+				document.getElementById("nameInfo").style.display = "block";
+			}else if(data.indexOf("userPwdError") != -1){
+				var str = data.split("|");
+				$("#pwdInfo").html("您输入的密码不正确，错误次数:"+ str[1] +"！错误5次将冻结账号");
+				if(str[1] >= 5){
+					$("#pwdInfo").html("您输入的密码不正确，错误次数:"+ str[1] +"！账号已被冻结，请联系管理员");
+				}
+				//toastr.warning("用户密码错误!");
+				document.getElementById("pwdInfo").style.display = "block";
+			}else if("2" == data){
+				$("#nameInfo").text("");
+				$("#nameInfo").text("您输入的账号已冻结");
+				document.getElementById("nameInfo").style.display = "block";
+			}else if("4" == data){
+				$("#nameInfo").text("");
+				$("#nameInfo").text("您输入的账号已停用");
+				document.getElementById("nameInfo").style.display = "block";
+			}else if("5" == data){
+				$("#nameInfo").text("");
+				$("#nameInfo").text("您输入的账号已删除");
+				document.getElementById("nameInfo").style.display = "block";
+			}else if("ipError" == data){
+				$("#nameInfo").text("");
+				$("#nameInfo").text("未在原主机注销，请先在原主机注销登录");
+				document.getElementById("nameInfo").style.display = "block";
+			}
+		});
+	}
+}
+
+function handleEnter(event) {
+	var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+	if (keyCode == 13) {
+		login();
+	}
+}
+</script>
+</body>
+</html>

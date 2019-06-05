@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+        
+    <!-- 禁止页面缓存begin -->
+	<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+	<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+	<meta HTTP-EQUIV="expires" CONTENT="Mon, 23 Jan 1978 20:52:30 GMT"> 
+	<!-- 禁止页面缓存end -->
+	
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="base/images/favicon.ico">
+    <title>统一支付平台（分布式）</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="base/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+
+    <link href="base/css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
+    <link href="base/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
+    <link href="base/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="base/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="base/css/helper.css" rel="stylesheet">
+    <link href="base/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="base/css/lib/toastr/toastr.min.css" />
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+    <!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="fix-header fix-sidebar">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+        <!-- header header  -->
+        <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- Logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->
+                        <b><img src="base/images/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span><img src="base/images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <div class="navbar-collapse">
+                    <!-- toggle and nav items -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                    <!-- User profile and search -->
+                   <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted text-muted " id="showMsg" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
+								<div class="notify" > <span class=""></span> <span class="point"></span> </div>
+							</a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">消息通知</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <a href="#">
+                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>欢迎访问统一支付平台</h5> <span class="mail-desc"></span>
+                                                     <span class="time" id="nowTime"></span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                       
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " onclick="doUser()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="base/images/users/5.jpg" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                <ul class="dropdown-user">
+                                    <li><a href="#"><i class="ti-user" id="userName"></i></a></li>
+                                    <li><a href="javascript:editpwd();"><i class="ti-settings"></i>  修改密码</a></li>
+                                    <li><a href="javascript:logout();"><i class="fa fa-power-off"></i>   注销</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul> 
+                </div>
+            </nav>
+        </div>
+        <!-- End header header -->
+        <!-- Left Sidebar  -->
+        <div class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar" id="indexMenu">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-devider"></li>
+                        <li class="nav-label">Home</li>
+                  
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </div>
+        <!-- End Left Sidebar  -->
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+            <!-- Bread crumb -->
+             <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h4 class="text-primary" id="menuName"></h4> </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item" id="AMenu"></li>
+                        <li class="breadcrumb-item active" id="secondMenu"></li>
+                    </ol>
+                </div>
+            </div> 
+            <!-- End Bread crumb -->
+            <!-- Container fluid  -->
+            <div class="container-fluid" id="indexFluid">
+            
+            </div>
+            <!-- End Container fluid  -->
+        </div>
+        <!-- End Page wrapper  -->
+
+<div class="modal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="divpwd">
+      <div class="modal-dialog modal-lg" role="document" style="height:400px;width: 500px;">
+        <div class="modal-content">
+    		<form class="form-valide" id="formpwd">
+              <div class="modal-header card-success">
+	              <h5 class="modal-title" style="color: #fff">修改密码</h5>
+	              <button type="button" class="btn btn-box-tool" data-dismiss="modal" aria-label="Close">
+					  <i class="fa fa-times"></i>
+				  </button>
+              </div>
+              <div class="modal-body" style="overflow: auto;height: 200px;">
+                  <div class="">
+                      <table width="100%" style="border-collapse: separate; border-spacing: 8px;">                     
+						<tr>
+							<td align="right">原密码:</td>
+							<td><input type="password" id="oldPassword" required="required"
+							class="form-control input-sm col-sm-10" /></td>
+						</tr>
+						<tr>	
+							<td align="right">新密码:</td>
+							<td><input type="password" id="newPassword"  required="required"
+							class="form-control input-sm col-sm-10" /></td>
+						</tr>
+						<tr>
+							<td align="right">确认新密码:</td>
+							<td><input  type="password" id="confirmPassword" required="required"
+							class="form-control input-sm col-sm-10" /></td>
+						</tr>	
+						<tr >
+							<td class="text-danger" align="right" >密码规则:</td>
+							<td class="text-danger" align="left">必须包含字母、数字、符号不少于8位</td>
+						</tr>	
+    				 </table>
+                  </div>
+              </div>
+              <div class="modal-footer">
+              <button type=button onclick="submitFormPwd()" class="btn btn-primary" >提交</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+              </div>
+           </form>
+			</div>	
+		</div>
+	</div>
+
+    </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <script src="base/js/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="base/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="base/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="base/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="base/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="base/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="base/js/scripts.js"></script>
+    <script src="base/js/lib/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="base/js/md5.js"></script>
+	<script type="text/javascript" src="upp/js/index.js"></script>
+	<script type="text/javascript">
+        //处理键盘事件 禁止后退键（Backspace）密码或单行、多行文本框除外
+        function forbidBackSpace(e) {
+            var ev = e || window.event; //获取event对象 
+            var obj = ev.target || ev.srcElement; //获取事件源 
+            var t = obj.type || obj.getAttribute('type'); //获取事件源类型 
+            //获取作为判断条件的事件类型 
+            var vReadOnly = obj.readOnly;
+            var vDisabled = obj.disabled;
+            //处理undefined值情况 
+            vReadOnly = (vReadOnly == undefined) ? false : vReadOnly;
+            vDisabled = (vDisabled == undefined) ? true : vDisabled;
+            //当敲Backspace键时，事件源类型为密码或单行、多行文本的， 
+            //并且readOnly属性为true或disabled属性为true的，则退格键失效 
+            var flag1 = ev.keyCode == 8 && (t == "password" || t == "text" || t == "textarea") && (vReadOnly == true || vDisabled == true);
+            //当敲Backspace键时，事件源类型非密码或单行、多行文本的，则退格键失效 
+            var flag2 = ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea";
+            //判断 
+            if (flag2 || flag1) return false;
+        }
+        //禁止后退键 作用于Firefox、Opera
+        document.onkeypress = forbidBackSpace;
+        //禁止后退键  作用于IE、Chrome
+        document.onkeydown = forbidBackSpace;
+
+	</script>
+	
+</body>
+</html>
