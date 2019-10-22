@@ -37,7 +37,7 @@
 		
 		<dependency>
 			<groupId>com.cloud.db</groupId>
-		    <artifactId>cloud-db</artifactId>
+    		<artifactId>sample-db</artifactId>
 		    <version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
